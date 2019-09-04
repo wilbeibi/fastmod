@@ -642,7 +642,7 @@ write a literal $ in the replacement string. See
 https://docs.rs/regex#syntax for details.
 
 A consequence of this syntax is that the use of single quotes instead
-of double quotes around the replacment text is important, because the
+of double quotes around the replacement text is important, because the
 bash shell itself cares about the $ character in double-quoted
 strings. If you must double-quote your input text, be careful to
 escape $ characters properly!",
@@ -765,7 +765,8 @@ compatibility with the original codemod.",
         .case_insensitive(ignore_case)
         .multi_line(true) // match codemod behavior for ^ and $.
         .dot_matches_new_line(multiline)
-        .build().with_context(|_| format!("Unable to make regex from {}", regex_str))?;
+        .build()
+        .with_context(|_| format!("Unable to make regex from {}", regex_str))?;
     let subst = matches.value_of("subst").expect("subst is required!");
 
     if accept_all {
